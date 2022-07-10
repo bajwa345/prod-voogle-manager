@@ -1,0 +1,67 @@
+<div class="relative flex flex-col flex-auto min-w-0 overflow-hidden">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pt-6 pb-1 sm:px-12 dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight leading-7 sm:leading-10 truncate">
+                    Transport Incharge Report (Election Day)
+                    <div class="top-button-container" style="display: block; float: right;">
+                        <!--<button class="hidden sm:inline-flex" mat-stroked-button
+                            (click)="newResultDetails(null, null)">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:pencil'"></mat-icon>
+                            <span class="ml-2">Update Record</span>
+                        </button>
+                        <button class="hidden sm:inline-flex ml-3" mat-stroked-button
+                            (click)="newResultDetails(null, null)">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
+                            <span class="ml-2">Download</span>
+                        </button>-->
+                    </div>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="relative pt-4 pb-12 sm:pt-4 sm:pb-16 sm:px-10 overflow-hidden">
+        <div class="sm:col-span-6 flex flex-col mt-4 flex-auto bg-card shadow rounded-2xl overflow-hidden">
+
+            <div class="flex flex-col flex-auto overflow-x-auto">
+                <table dir="rtl" class="min-w-240 min-h-30 overflow-y-visible static-table">
+                    <tr class="st-header-row">
+                        <th class="st-header-cell text-center">#</th>
+                        <th class="st-header-cell urdu text-lg pr-2">پولنگ لوکیشن</th>
+                        <th class="st-header-cell urdu text-lg pr-2">انچارج</th>
+                        <th class="st-header-cell urdu text-lg pr-2">موبائل نمبر</th>
+                        <th class="st-header-cell urdu text-lg pr-2 min-w-54">گاڑیوں کی تفصیل</th>
+                    </tr>
+
+                    <ng-container *ngFor="let item of data.items; let i = index;">
+                    <tr class="st-row">
+                        <td class="st-cell text-center">{{(i+1)}}</td>
+                        <td class="st-cell urdu text-lg font-semibold">{{item.plc_name}}</td>
+                        <td class="st-cell p-0 image-cell">
+                            <ng-container *ngIf="(item.pli_inchargeName && item.pli_inchargeName != '');else noname_alt">
+                                <p class="urdu text-xl font-bold">{{item.pli_inchargeName}}</p>
+                            </ng-container>
+                            <ng-template #noname_alt>
+                                <img class="row_urdu_blob" onerror='this.style.display = "none"' src="{{'data:image/png;base64,' + item.pli_inchargeNameBlob}}" />
+                            </ng-template>
+                        </td>
+                        <td class="st-cell font-semibold">{{item.pli_inchargeMobile ? _sharedService.formatMobile(item.pli_inchargeMobile) : (item.pli_inchargeName || item.pli_inchargeNameBlob ? '---' : '')}}</td>
+                        <td class="st-cell urdu text-lg font-semibold"><span class="english"> {{item.vehical_van}} </span>ویگن <span class="mr-8 english"> {{item.vehical_riksha}} </span>رکشہ <span class="mr-8 english"> {{item.vehical_car}} </span>کار </td>
+                    </tr>
+                    </ng-container>
+
+                    <tr class="st-row">
+                        <td class="st-cell" colspan="4"></td>
+                        <td class="st-cell urdu text-lg font-semibold"><span class="english"> {{total_vehical_van}} </span>ویگن <span class="mr-8 english"> {{total_vehical_riksha}} </span>رکشہ <span class="mr-8 english"> {{total_vehical_car}} </span>کار </td>
+                    </tr>
+                </table>
+            </div>
+
+    </div>
+
+</div>

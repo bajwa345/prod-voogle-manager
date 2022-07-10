@@ -1,0 +1,45 @@
+<div class="relative flex flex-col w-full h-full">
+    <button mat-icon-button class="close-button mat-icon-close-button" (click)="closeDialog()">
+        <mat-icon class="close-icon" matPrefix [svgIcon]="'heroicons_solid:x'">X</mat-icon>
+    </button>
+
+    <h2 mat-dialog-title class="text-4xl text-center urdu mt-2 mb-4 font-bold text-primary-500">انچارج پولنگ لوکیشن کی ترمیم</h2>
+
+    <div id="div-message"></div>
+
+    <div class="dailog-body px-6 pt-3 pb-2 dir-rtl" id="form-container">
+
+        <form [formGroup]="form">
+            <table class="details-inner-tbl">
+                <tr><td class="urdu text-lg font-bold" style="width: 18%;">پولنگ لوکیشن</td>
+                    <td colspan="3" class="urdu text-lg font-bold">{{model.name}}</td>
+                </tr>
+                <tr><td class="urdu text-lg font-bold" style="width: 18%;">ٹوٹل ووٹر</td>
+                    <td class="font-bold" style="width: 32%;">{{model.votersCount ? model.votersCount.toLocaleString() : '-'}}</td>
+                    <td class="urdu text-lg font-bold" style="width: 18%;">ٹوٹل بوتھ</td>
+                    <td class="font-bold" style="width: 32%;">{{model.boothsCount ? model.boothsCount.toLocaleString() : '-'}}</td>
+                </tr>
+                <tr><td colspan="4">
+                    <mat-divider class="mt-5 mb-6"></mat-divider>
+                </td></tr>
+                <tr><td class="urdu text-lg font-bold pt-4">انچارج شناختی کارڈ</td>
+                    <td colspan="3" style="width: max-content;">
+                        <mat-form-field class="flex-auto text-sm gt-xs:pr-3 text-right" style="width: 150px;">
+                            <input matInput (keyup)="updateInfoByCnic()" formControlName="inchargeCnic" mask='00000-0000000-0' autocomplete="off" class="dir-ltr">
+                        </mat-form-field>
+
+                        <div class="mr-3 incharge_name_div" id="incharge_name_container">
+                            <p *ngIf="model.inchargeNameText" id="incharge_name_text" class="incharge_name_txt urdu text-lg font-bold">{{model.inchargeNameText}}</p>
+                            <div *ngIf="!model.inchargeNameText">
+                                <img id="incharge_name_blob" class="row_urdu_blob" onerror='this.style.display = "none"' src="{{'data:image/png;base64,' + model.vtr_nameBlob}}" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions class="flex items-right mb-1 px-4 space-x-2 ng-star-inserted">
+    <button mat-flat-button class="bg-primary-400 text-white text-md" (click)="onSubmit()">Update Details</button>
+</div>

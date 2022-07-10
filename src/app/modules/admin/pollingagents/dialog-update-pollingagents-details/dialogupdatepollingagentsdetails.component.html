@@ -1,0 +1,72 @@
+<div class="relative flex flex-col w-full h-full">
+    <button mat-icon-button class="close-button mat-icon-close-button" (click)="closeDialog()">
+        <mat-icon class="close-icon" matPrefix [svgIcon]="'heroicons_solid:x'">X</mat-icon>
+    </button>
+
+    <h2 mat-dialog-title class="text-4xl urdu text-center pt-3 font-bold text-primary-500">پولنگ ایجنٹس کی ترمیم</h2>
+
+    <div id="div-message"></div>
+
+    <div class="dailog-body px-4 pt-4 pb-2 dir-rtl" id="form-container">
+
+        <form [formGroup]="form">
+            <table class="details-inner-tbl">
+                <tr><td class="urdu text-lg font-bold">پولنگ اسٹیشن</td>
+                    <td colspan="3" class="urdu text-lg font-bold">{{model.pls_name}}</td>
+                </tr>
+                <tr *ngIf="model.pls_details"><td class="urdu text-lg font-bold"></td>
+                    <td colspan="3" class="urdu text-lg font-bold">{{model.pls_details}}</td>
+                </tr>
+                <tr><td class="urdu text-lg font-bold" style="width: 18%;">ٹوٹل ووٹر</td>
+                    <td class="font-bold" style="width: 22%;">{{model.pls_votersCount ? model.pls_votersCount.toLocaleString() : 0}}</td>
+                    <td class="urdu text-lg font-bold" style="width: 18%;">ٹوٹل بوتھ</td>
+                    <td class="font-bold">{{model.pls_boothsCount ? model.pls_boothsCount.toLocaleString() : 0}}</td>
+                </tr>
+                <tr><td colspan="4">
+                    <mat-divider class="mt-5 mb-6 px-4"></mat-divider>
+                </td></tr>
+            </table>
+            <table class="details-inner-tbl">
+                <tr><td class="urdu text-lg font-bold pt-4" style="width: 29%;">پولنگ ایجنٹ (اول) - شناختی کارڈ</td>
+                    <td colspan="3" style="width: max-content;">
+                        <mat-form-field class="flex-auto text-sm gt-xs:pr-3 text-right" style="width: 140px;">
+                            <input matInput (keyup)="updateInfoByCnic()" formControlName="pa_cnic_0" mask='00000-0000000-0' autocomplete="off" class="dir-ltr">
+                        </mat-form-field>
+
+                        <div class="mr-3 incharge_name_div" id="incharge_name_container_pa_cnic_0">
+                            <p id="incharge_name_text_pa_cnic_0" class="incharge_name_txt urdu text-lg font-bold"></p>
+                            <img id="incharge_name_blob_pa_cnic_0" class="row_urdu_blob" onerror='this.style.display = "none"' src="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr><td class="urdu text-lg font-bold pt-4">پولنگ ایجنٹ (دوم) - شناختی کارڈ</td>
+                    <td colspan="3" style="width: max-content;">
+                        <mat-form-field class="flex-auto text-sm gt-xs:pr-3 text-right" style="width: 140px;">
+                            <input matInput (keyup)="updateInfoByCnic()" formControlName="pa_cnic_1" mask='00000-0000000-0' autocomplete="off" class="dir-ltr">
+                        </mat-form-field>
+
+                        <div class="mr-3 incharge_name_div" id="incharge_name_container_pa_cnic_1">
+                            <p id="incharge_name_text_pa_cnic_1" class="incharge_name_txt urdu text-lg font-bold"></p>
+                            <img id="incharge_name_blob_pa_cnic_1" class="row_urdu_blob" onerror='this.style.display = "none"' src="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr><td class="urdu text-lg font-bold pt-4">پولنگ ایجنٹ (سوم) - شناختی کارڈ</td>
+                    <td colspan="3" style="width: max-content;">
+                        <mat-form-field class="flex-auto text-sm gt-xs:pr-3 text-right" style="width: 140px;">
+                            <input matInput (keyup)="updateInfoByCnic()" formControlName="pa_cnic_2" mask='00000-0000000-0' autocomplete="off" class="dir-ltr">
+                        </mat-form-field>
+
+                        <div class="mr-3 incharge_name_div" id="incharge_name_container_pa_cnic_2">
+                            <p id="incharge_name_text_pa_cnic_2" class="incharge_name_txt urdu text-lg font-bold"></p>
+                            <img id="incharge_name_blob_pa_cnic_2" class="row_urdu_blob" onerror='this.style.display = "none"' src="" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions class="flex items-right mb-1 px-4 space-x-2 ng-star-inserted">
+    <button mat-flat-button class="bg-primary-400 text-white text-md" (click)="onSubmit()">Update Details</button>
+</div>

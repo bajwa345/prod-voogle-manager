@@ -1,0 +1,60 @@
+<div class="relative flex flex-col w-full h-full">
+    <button mat-icon-button class="close-button mat-icon-close-button" (click)="closeDialog()">
+        <mat-icon class="close-icon" matPrefix [svgIcon]="'heroicons_solid:x'">X</mat-icon>
+    </button>
+
+    <h2 mat-dialog-title class="text-4xl text-center urdu mt-2 mb-4 font-bold text-blue-500">پولنگ اسٹیشن کی تفصیل</h2>
+    <div class="dailog-body px-6 pb-6 pt-2 dir-rtl">
+        <table class="details-inner-tbl">
+            <tr><td class="urdu text-lg font-bold">پولنگ اسٹیشن</td>
+                <td colspan="3" class="urdu text-lg font-bold">{{model.pls_name}}</td>
+            </tr>
+            <tr *ngIf="model.pls_details"><td class="urdu text-lg font-bold"></td>
+                <td colspan="3" class="urdu text-lg font-bold">{{model.pls_details}}</td>
+            </tr>
+            <tr><td class="urdu text-lg font-bold" style="width: 18%;">ٹوٹل ووٹر</td>
+                <td class="font-bold" style="width: 24%;">{{model.pls_votersCount ? model.pls_votersCount.toLocaleString() : 0}}</td>
+                <td class="urdu text-lg font-bold" style="width: 18%;">ٹوٹل بوتھ</td>
+                <td class="font-bold">{{model.pls_boothsCount ? model.pls_boothsCount.toLocaleString() : 0}}</td>
+            </tr>
+            <tr><td class="urdu text-lg font-bold pt-2" style="vertical-align: top;">بلاک کوڈز</td>
+                <td class="font-bold pt-2">
+                    <ng-container *ngFor="let item of model.pls_blockcodes?.split(', ')">
+                        <span class="tbl-inner-row leading-7">{{ item.trim() }}</span>
+                    </ng-container>
+                    <ng-template [ngIf]="model.pls_blockcodes == null">
+                        <span> --- </span>
+                    </ng-template>
+                </td>
+                <td colspan="2" class="font-bold pt-2">
+                    <ng-container *ngFor="let item of model.pls_electoralareas?.split(', ')">
+                        <span class="tbl-inner-row leading-7 urdu text-lg font-bold">({{ item.trim() }})</span>
+                    </ng-container>
+                </td>
+            </tr>
+            <tr *ngIf="model.pls_inchargeCnic">
+                <td colspan="4" class="py-2">
+                    <mat-divider class="mt-6 mb-4 px-4"></mat-divider>
+                </td>
+            </tr>
+            <tr *ngIf="model.pls_inchargeCnic"><td class="urdu text-lg font-bold">انچارج شناختی کارڈ</td>
+                <td class="font-bold">{{_sharedService.formatCnic(model.pls_inchargeCnic)}}</td>
+                <td class="urdu text-lg font-bold">انچارج نام</td>
+                <td>
+                    <p class="urdu text-lg font-bold">{{model.pls_inchargeNameText}}</p>
+                    <div *ngIf="!model.pls_inchargeNameText">
+                        <img class="row_urdu_blob" onerror='this.style.display = "none"' src="{{'data:image/png;base64,' + model.vtr_nameBlob}}" />
+                    </div>
+                </td>
+            </tr>
+            <tr *ngIf="model.pls_inchargeCnic"><td class="urdu text-lg font-bold">انچارج موبائل نمبر</td>
+                <td colspan="3">
+                    <ng-container *ngIf="(model.pls_inchargeMobile && model.pls_inchargeMobile != '' && model.pls_inchargeMobile != 'null');else nophone_message">
+                        {{_sharedService.formatMobile(model.pls_inchargeMobile)}}
+                    </ng-container>
+                    <ng-template #nophone_message>---</ng-template>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

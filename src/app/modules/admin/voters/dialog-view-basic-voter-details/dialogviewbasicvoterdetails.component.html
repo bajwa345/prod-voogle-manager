@@ -1,0 +1,47 @@
+<div class="relative flex flex-col w-full h-full">
+    <button mat-icon-button class="close-button mat-icon-close-button" (click)="closeDialog()">
+        <mat-icon class="close-icon" matPrefix [svgIcon]="'heroicons_solid:x'">X</mat-icon>
+    </button>
+
+    <h2 mat-dialog-title class="text-4xl text-center urdu mt-2 font-bold text-blue-500">بنیادی تفصیل</h2>
+    <div class="dailog-body px-6 pb-6 pt-3 dir-rtl">
+        <table class="details-inner-tbl">
+            <tr><td class="urdu text-lg font-bold" style="width: 17%;">نام</td>
+                <td style="width: 33%;">
+                    <p class="urdu text-lg">{{model.vtr_nameUrdu}}</p>
+                    <div *ngIf="!model.vtr_nameUrdu">
+                        <img class="row_urdu_blob" onerror='this.style.display = "none"' src="{{'data:image/png;base64,' + model.vtr_nameBlob}}" />
+                    </div>
+                </td>
+                <td class="urdu text-lg font-bold" style="width: 17%;">والد/ شوہر کا نام</td>
+                <td style="width: 33%;">
+                    <p class="urdu text-lg">{{model.vtr_fatherUrdu}}</p>
+                    <div *ngIf="!model.vtr_fatherUrdu">
+                        <img class="row_urdu_blob" onerror='this.style.display = "none"' src="{{'data:image/png;base64,' + model.vtr_fatherBlob}}" />
+                    </div>
+                </td>
+            </tr>
+            <tr><td class="urdu text-lg font-bold">شناختی کارڈ نمبر</td>
+                <td>{{_sharedService.formatCnic(model.vtr_cnic)}}</td>
+                <td class="urdu text-lg font-bold">جنس</td>
+                <td class="urdu text-lg">{{model.vtr_genderUrdu}}</td>
+            </tr>
+            <tr><td class="urdu text-lg font-bold">گھر کا پتہ</td>
+                <td colspan="3">
+                    <p class="urdu text-lg">{{model.vtr_addressUrdu}}</p>
+                    <div *ngIf="!model.vtr_addressUrdu">
+                        <img class="row_urdu_blob" onerror='this.style.display = "none"' src="{{'data:image/png;base64,' + model.vtr_addressBlob}}" />
+                    </div>
+                </td>
+            </tr>
+            <tr><td class="urdu text-lg font-bold">موبائل نمبر</td>
+                <td colspan="3">
+                    <ng-container *ngIf="(model.vtr_mobile || model.vtr_mobile2 || model.vtr_mobile3);else nophone_message">
+                        {{_sharedService.formatMobile(model.vtr_mobile)}} &nbsp; {{_sharedService.formatMobile(model.vtr_mobile2)}} &nbsp; {{_sharedService.formatMobile(model.vtr_mobile3)}}
+                    </ng-container>
+                    <ng-template #nophone_message>---</ng-template>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

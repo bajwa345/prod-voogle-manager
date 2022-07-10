@@ -1,0 +1,73 @@
+<div class="relative flex flex-col flex-auto min-w-0 overflow-hidden">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pt-6 pb-1 sm:px-12 dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight leading-7 sm:leading-10 truncate">
+                    Workers Campaign Report
+                    <div class="top-button-container" style="display: block; float: right;">
+                        <!--<button class="hidden sm:inline-flex ml-3" mat-stroked-button
+                            (click)="printReport()">
+                            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:download'"></mat-icon>
+                            <span class="ml-2">Download</span>
+                        </button>-->
+                    </div>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="relative pt-4 pb-12 sm:pt-4 sm:pb-16 sm:px-10 overflow-hidden">
+        <div class="sm:col-span-6 flex flex-col mt-4 flex-auto bg-card shadow rounded-2xl overflow-hidden">
+
+            <div class="flex flex-col flex-auto overflow-x-auto">
+                <table dir="rtl" class="min-w-240 min-h-30 overflow-y-visible static-table">
+                    <tr class="st-header-row">
+                        <th class="st-header-cell text-center">#</th>
+                        <th class="st-header-cell urdu text-lg pr-6">لاگ ان</th>
+                        <th class="st-header-cell urdu text-lg pr-12">پورا نام</th>
+                        <th class="st-header-cell urdu text-lg pr-6 min-w-30">تاریخ رجسٹریشن</th>
+                        <th class="st-header-cell urdu text-lg pr-2 min-w-18">سرچز</th>
+                        <th class="st-header-cell urdu text-lg pr-2 min-w-18">کالز</th>
+                        <th class="st-header-cell urdu text-lg pr-2 min-w-18">لوکیشنز</th>
+                        <th class="st-header-cell urdu text-lg pr-2 min-w-24">اپڈیٹ فونز</th>
+                        <th class="st-header-cell urdu text-lg pr-2 min-w-26">اپڈیٹ لوکیشنز</th>
+                        <th class="st-header-cell urdu text-lg pr-2 min-w-24">ایس ایم ایس</th>
+                        <th class="st-header-cell urdu text-lg pr-2 min-w-22">سلپ پرنٹ</th>
+                    </tr>
+
+                    <ng-container *ngFor="let item of data.items; let i = index;">
+                    <tr class="st-row">
+                        <td class="st-cell text-center">{{(i+1)}}</td>
+                        <td class="st-cell font-semibold">{{item.aur_userName}}</td>
+                        <td class="st-cell text-center">{{item.aur_fullName}}</td>
+                        <td class="st-cell">{{item.aur_signUpTime | date: 'mediumDate'}}</td>
+                        <td class="st-cell">{{item.did_searches? item.did_searches.toLocaleString() : 0}}</td>
+                        <td class="st-cell">{{item.did_calls? item.did_calls.toLocaleString() : 0}}</td>
+                        <td class="st-cell">{{item.view_locations? item.view_locations.toLocaleString() : 0}}</td>
+                        <td class="st-cell">{{item.updated_phones? item.updated_phones.toLocaleString() : 0}}</td>
+                        <td class="st-cell">{{item.updated_locations? item.updated_locations.toLocaleString() : 0}}</td>
+                        <td class="st-cell">{{item.sent_sms? item.sent_sms.toLocaleString() : 0}}</td>
+                        <td class="st-cell">{{item.printed_slips? item.printed_slips.toLocaleString() : 0}}</td>
+                    </tr>
+                    </ng-container>
+
+                    <tr class="st-row">
+                        <td colspan="4"></td>
+                        <td class="st-cell font-semibold">{{total_did_searches? total_did_searches.toLocaleString() : 0}}</td>
+                        <td class="st-cell font-semibold">{{total_did_calls? total_did_calls.toLocaleString() : 0}}</td>
+                        <td class="st-cell font-semibold">{{total_view_locations? total_view_locations.toLocaleString() : 0}}</td>
+                        <td class="st-cell font-semibold">{{total_updated_phones? total_updated_phones.toLocaleString() : 0}}</td>
+                        <td class="st-cell font-semibold">{{total_updated_locations? total_updated_locations.toLocaleString() : 0}}</td>
+                        <td class="st-cell font-semibold">{{total_sent_sms? total_sent_sms.toLocaleString() : 0}}</td>
+                        <td class="st-cell font-semibold">{{total_printed_slips? total_printed_slips.toLocaleString() : 0}}</td>
+                    </tr>
+                </table>
+            </div>
+
+    </div>
+
+</div>

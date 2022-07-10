@@ -1,0 +1,91 @@
+<div class="relative flex flex-col w-full h-full">
+    <button mat-icon-button class="close-button mat-icon-close-button" (click)="closeDialog()">
+        <mat-icon class="close-icon" matPrefix [svgIcon]="'heroicons_solid:x'">X</mat-icon>
+    </button>
+
+    <h2 mat-dialog-title class="text-4xl urdu text-center pt-3 font-bold text-blue-500">ایپ یوزر کی ترمیم</h2>
+
+    <div id="div-message"></div>
+
+    <div class="dailog-body px-6 pt-2 dir-rtl" id="form-container">
+
+        <form [formGroup]="form">
+            <table class="details-inner-tbl">
+                <tr><td class="urdu text-lg font-bold pt-3" style="width: 28%;">لاگ ان (موبائل نمبر)</td>
+                    <td>
+                        <mat-form-field class="flex-auto readonly text-sm gt-xs:pr-3 text-right" style="width: 200px;">
+                            <input matInput readonly formControlName="userName" class="dir-ltr">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr><td class="urdu text-lg font-bold pt-3">شناختی کارڈ نمبر <span class="text-red-400 mr-1">*</span></td>
+                    <td>
+                        <mat-form-field class="flex-auto text-sm gt-xs:pr-3 text-right" style="width: 200px;">
+                            <input matInput formControlName="cnicNumber" mask='00000-0000000-0' placeholder="XXXXX-XXXXXXX-X" autocomplete="off" class="dir-ltr">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr><td class="urdu text-lg font-bold pt-3">پورا نام <span class="text-red-400 mr-1">*</span></td>
+                    <td>
+                        <mat-form-field class="flex-auto text-sm gt-xs:pr-3 text-right" style="width: 200px;">
+                            <input matInput formControlName="fullName" placeholder="Full Name" autocomplete="off" class="dir-ltr">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr><td class="urdu text-lg font-bold pt-3">رسائی کی سطح</td>
+                    <td>
+                        <mat-form-field class="flex-auto text-sm gt-xs:pr-3 text-right" style="width: 200px;">
+                            <mat-select formControlName="accessLevel" (selectionChange)="changeViewForAccesslevel($event)" [placeholder]="'رسائی کی سطح'">
+                                <mat-option value="1" class="text-right">Full Access</mat-option>
+                                <mat-option value="2" class="text-right">Electoral Area</mat-option>
+                                <mat-option value="3" class="text-right">Polling Location</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr *ngIf="this.accesslevelValue == 3">
+                    <td class="urdu text-lg font-bold pt-3">پولنگ لوکیشن <span class="text-red-400 mr-1">*</span></td>
+                    <td>
+                        <mat-form-field class="flex-auto text-sm lg-select gt-xs:pr-3 fuse-mat-textarea text-right" style="width: 200px;">
+                            <mat-select formControlName="pollingLocation" [placeholder]="'پولنگ لوکیشن'">
+                                <mat-option class="text-right">------</mat-option>
+                                <mat-option class="fulltext text-right" *ngFor="let dd of ddPollingLocations" [value]="dd.id">{{dd.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr *ngIf="this.accesslevelValue == 2">
+                    <td class="urdu text-lg font-bold pt-3">انتخابی علاقہ <span class="text-red-400 mr-1">*</span></td>
+                    <td>
+                        <mat-form-field class="flex-auto text-sm lg-select gt-xs:pr-3 fuse-mat-textarea text-right" style="width: 200px;">
+                            <mat-select formControlName="electoralArea" [placeholder]="'انتخابی علاقہ'">
+                                <mat-option class="text-right">--- all ---</mat-option>
+                                <mat-option class="fulltext text-right" *ngFor="let dd of ddElectoralAreas" [value]="dd.id">{{dd.description}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr><td class="urdu text-lg font-bold pt-3">واٹس ایپ نمبر</td>
+                    <td>
+                        <mat-form-field class="flex-auto text-sm gt-xs:pr-3 text-right" style="width: 200px;">
+                            <input matInput formControlName="whatsAppNumber" mask='0000-0000000' placeholder="03XX-XXXXXXX" autocomplete="off" class="dir-ltr">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr><td class="urdu text-lg font-bold pt-3">اکاؤنٹ ایکٹو <span class="text-red-400 mr-1">*</span></td>
+                    <td>
+                        <mat-slide-toggle
+                                class="ml-2 mt-3"
+                                [color]="'primary'"
+                                formControlName="isActive">
+                            </mat-slide-toggle>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions class="flex items-right mb-1 px-4 space-x-2 ng-star-inserted">
+    <button mat-flat-button class="bg-blue-400 text-white text-md" (click)="onSubmit()">Update Details</button>
+</div>
+

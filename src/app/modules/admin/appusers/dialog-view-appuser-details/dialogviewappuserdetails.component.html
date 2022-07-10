@@ -1,0 +1,82 @@
+<div class="relative flex flex-col w-full h-full">
+    <button mat-icon-button class="close-button mat-icon-close-button" (click)="closeDialog()">
+        <mat-icon class="close-icon" matPrefix [svgIcon]="'heroicons_solid:x'">X</mat-icon>
+    </button>
+
+    <h2 mat-dialog-title class="text-4xl text-center urdu mt-3 font-bold text-blue-500">ایپ یوزر کی تفصیل</h2>
+    <div class="dailog-body px-6 pb-4 pt-3 dir-rtl">
+        <table class="details-inner-tbl">
+            <tr>
+                <td class="urdu text-lg font-bold" style="width: 18%;">لاگ ان</td>
+                <td class="font-semibold" style="width: 32%;">{{model.aur_userName}}</td>
+                <td class="urdu text-lg font-bold" style="width: 18%;">حالت</td>
+                <td class="font-semibold" style="width: 32%;">
+                    <ng-template [ngIf]="model.aur_isActive == 1"><span class="text-blue-500">Active</span></ng-template>
+                    <ng-template [ngIf]="model.aur_isActive == 0"><span class="text-red-500">In-active</span></ng-template>
+                </td>
+            </tr>
+            <tr>
+                <td class="urdu text-lg font-bold">پورا نام</td>
+                <td class="font-semibold">{{model.aur_fullName}}</td>
+                <td class="urdu text-lg font-bold">شناختی کارڈ نمبر</td>
+                <td class="font-semibold">{{_sharedService.formatCnic(model.aur_cnic)}}</td>
+            </tr>
+            <tr>
+                <td class="urdu text-lg font-bold">موبائل نمبر</td>
+                <td class="font-semibold">{{_sharedService.formatMobile(model.aur_mobile)}}</td>
+                <td class="urdu text-lg font-bold">واٹس ایپ نمبر</td>
+                <td class="font-semibold">{{model.aur_whatsApp}}</td>
+            </tr>
+            <tr>
+                <td class="urdu text-lg font-bold">پلیٹ فارم</td>
+                <td class="ifont-semibold">{{model.aur_platformOs == 'A'? 'Android' : model.aur_platformOs == 'I'? 'IPhone' : '---'}}</td>
+                <td class="urdu text-lg font-bold">رسائی کی سطح</td>
+                <td class="ifont-semibold">{{model.aur_accesslevel}}</td>
+            </tr>
+            <ng-container *ngIf="(model.aur_accessLevelId == 2)">
+                <tr>
+                    <td class="urdu text-lg font-bold">انتخابی علاقہ</td>
+                    <td colspan="3" class="font-semibold"
+                    [class.urdu]="this._sharedService.isEnglishString(model.aur_electoralArea) == false"
+                    [class.text-lg]="this._sharedService.isEnglishString(model.aur_electoralArea) == false">{{model.aur_electoralArea}}</td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="(model.aur_accessLevelId == 3)">
+                <tr>
+                    <td class="urdu text-lg font-bold">پولنگ لوکیشن</td>
+                    <td colspan="3" class="font-semibold"
+                    [class.urdu]="this._sharedService.isEnglishString(model.aur_pollingLocation) == false"
+                    [class.text-lg]="this._sharedService.isEnglishString(model.aur_pollingLocation) == false">{{model.aur_pollingLocation}}</td>
+                </tr>
+            </ng-container>
+            <tr>
+                <td class="urdu text-lg font-bold">ٹائم رجسٹریشن</td>
+                <td class="font-semibold dir-ltr text-right">{{model.aur_signUpTime? (model.aur_signUpTime | date: 'short') : '---'}}</td>
+                <td class="urdu text-lg font-bold">ٹائم لاسٹ سنک</td>
+                <td class="font-semibold dir-ltr text-right">{{model.aur_lastSyncTime? (model.aur_lastSyncTime | date: 'short') : '---'}}</td>
+            </tr>
+
+            <tr><td colspan="4">
+                <mat-divider class="mt-4 mb-4 px-4"></mat-divider>
+            </td></tr>
+            <tr>
+                <td class="urdu text-lg font-bold">اپڈیٹ فونز</td>
+                <td class="font-semibold">---</td>
+                <td class="urdu text-lg font-bold">اپڈیٹ لوکیشنز</td>
+                <td class="font-semibold">---</td>
+            </tr>
+            <tr>
+                <td class="urdu text-lg font-bold">ایس ایم ایس</td>
+                <td class="font-semibold">---</td>
+                <td class="urdu text-lg font-bold">فون کالز</td>
+                <td class="font-semibold">---</td>
+            </tr>
+            <tr>
+                <td class="urdu text-lg font-bold">ووٹر سرچز</td>
+                <td class="font-semibold">---</td>
+                <td class="urdu text-lg font-bold">ووٹر لوکیشنز</td>
+                <td class="font-semibold">---</td>
+            </tr>
+        </table>
+    </div>
+</div>
