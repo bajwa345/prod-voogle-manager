@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    apiUrl : 'http://localhost:5001/api' //'https://voogle.azurewebsites.net/api' //'http://localhost:5001/api'
+    apiUrl : 'http://api.voogleapp.com/api' //'http://localhost:5001/api' //'https://voogle.azurewebsites.net/api' //'http://localhost:5001/api'
 };
 
 /*
