@@ -34,7 +34,7 @@ export class ListVotersComponent implements OnInit, AfterViewInit, OnDestroy {
 
     searchBtn = new FormControl(null, null);
 
-    displayedColumns: string[] = ['rownumber', 'vtr_cnic', 'vtr_silsila', 'vtr_girana', 'vtr_name', 'vtr_fhname', 'vtr_age', 'vtr_gender', 'vtr_blockCode', 'actions'];
+    displayedColumns: string[] = ['rownumber', 'vtr_cnic', 'vtr_silsila', 'vtr_girana', 'vtr_name', 'vtr_age', 'vtr_gender', 'vtr_blockCode', 'actions'];
     resultsLength = 0;
     isLoading = false;
 

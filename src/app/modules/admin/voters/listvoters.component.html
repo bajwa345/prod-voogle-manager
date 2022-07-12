@@ -117,9 +117,14 @@
                     <ng-container matColumnDef="vtr_name">
                         <th mat-header-cell *matHeaderCellDef class="urdu text-lg pr-2">نام</th>
                         <td class="image-cell" mat-cell *matCellDef="let row">
-                            <ng-container *ngIf="(row.vtr_nameUrdu != false);else noname_alt">
+                            <ng-container *ngIf="(row.vtr_nameUrdu != false);else noname_image">
                                 <p class="urdu text-xl font-bold">{{row.vtr_nameUrdu}}</p>
                             </ng-container>
+                            <ng-template #noname_image>
+                                <ng-container *ngIf="(row.vtr_nameUrl != false); else noname_alt">
+                                    <img src="https://svoogle.blob.core.windows.net/data-pp158/{{row.vtr_nameUrl}}" style="height: 22px;"/>
+                                </ng-container>
+                            </ng-template>
                             <ng-template #noname_alt>
                                 <img class="row_urdu_blob" onerror='this.style.display = "none"' src="{{'data:image/png;base64,' + row.vtr_nameBlob}}" />
                             </ng-template>
