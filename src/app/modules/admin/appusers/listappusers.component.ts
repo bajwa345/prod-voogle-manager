@@ -12,6 +12,7 @@ import { DialogNewAppUserComponent } from 'app/modules/admin/appusers/dialog-new
 import { DialogViewAppUserDetailsComponent } from 'app/modules/admin/appusers/dialog-view-appuser-details/dialogviewappuserdetails.component';
 import { DialogUpdateAppUserDetailsComponent } from 'app/modules/admin/appusers/dialog-update-appuser-details/dialogupdateappuserdetails.component';
 import { DialogResetAppUserPasswordComponent } from 'app/modules/admin/appusers/dialog-reset-appuser-password/dialogresetappuserpassword.component';
+import { DialogDeleteAppUserComponent } from 'app/modules/admin/appusers/dialog-delete-appuser/dialogdeleteappuser.component';
 
 
 @Component({
@@ -190,6 +191,21 @@ export class ListAppUsersComponent implements OnInit, AfterViewInit, OnDestroy {
 
         dialogRef.afterClosed().subscribe(()=>{
             this.cdRef.detectChanges();
+        });
+    }
+
+    deleteUser(rowData: any,  e: HTMLElement){
+        const dialogRef = this.dialog.open(DialogDeleteAppUserComponent, {
+          width: "35%", disableClose: false, autoFocus: true,
+          data: {
+            rowData: rowData,
+            eDom: e
+          }
+        });
+
+        dialogRef.afterClosed().subscribe(()=>{
+            //this.cdRef.detectChanges();
+            this.populateListData();
         });
     }
 
