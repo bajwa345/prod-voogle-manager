@@ -32,7 +32,8 @@
                     <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:clipboard-list'"></mat-icon>
                 </mat-form-field>
                 <mat-form-field class="flex-auto col-span-2 text-sm gt-xs:pr-3 mr-2 ml-2 text-right">
-                    <input matInput [formControl]="cnicNumber" class="dir-ltr" mask='00000-0000000-0' [placeholder]="'شناختی کارڈ نمبر'">
+                    <!--<input matInput [formControl]="cnicNumber" class="dir-ltr" mask='99999-9999999-9' [placeholder]="'شناختی کارڈ نمبر'">-->
+                    <input matInput [formControl]="cnicNumber" class="dir-ltr" maxlength="13" onkeypress='return event.charCode >= 48 && event.charCode <= 57' [placeholder]="'شناختی کارڈ نمبر'">
                     <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:identification'"></mat-icon>
                 </mat-form-field>
                 <mat-form-field class="flex-auto col-span-2 gt-xs:pr-3 text-sm mr-2 ml-2">
@@ -45,7 +46,8 @@
                     <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:emoji-happy'"></mat-icon>
                 </mat-form-field>
                 <mat-form-field class="flex-auto col-span-2 text-sm gt-xs:pr-3 mr-2 ml-2 text-right">
-                    <input matInput [formControl]="familyNumber" mask="9999" class="dir-ltr" [placeholder]="'گھرانہ نمبر'">
+                    <!--<input matInput [formControl]="familyNumber" mask="9999" class="dir-ltr" [placeholder]="'گھرانہ نمبر'">-->
+                    <input matInput [formControl]="familyNumber" class="dir-ltr" maxlength="6" [placeholder]="'گھرانہ نمبر'">
                     <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:user-group'"></mat-icon>
                 </mat-form-field>
                 <mat-form-field class="flex-auto col-span-2 text-sm gt-xs:pr-3 mr-2 ml-2 text-right">
@@ -131,7 +133,7 @@
                         </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="vtr_fhname">
+                    <!--<ng-container matColumnDef="vtr_fhname">
                         <th mat-header-cell *matHeaderCellDef class="urdu text-lg pr-2">والد/ شوہر کا نام</th>
                         <td class="image-cell" mat-cell *matCellDef="let row">
                             <ng-container *ngIf="(row.vtr_fatherUrdu != false);else nofather_alt">
@@ -153,7 +155,7 @@
                                 <img class="row_urdu_blob" onerror='this.style.display = "none"' src="{{'data:image/png;base64,' + row.vtr_addressBlob}}" />
                             </ng-template>
                         </td>
-                    </ng-container>
+                    </ng-container>-->
 
                     <ng-container matColumnDef="vtr_age">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="urdu text-lg">عمر</th>

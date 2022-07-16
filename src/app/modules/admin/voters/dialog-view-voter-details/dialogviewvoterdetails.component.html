@@ -16,9 +16,17 @@
                     <tr><td class="urdu text-lg font-bold">ووٹر کا نام</td>
                         <td>
                             <p class="urdu text-xl font-bold">{{model.vtr_nameUrdu}}</p>
-                            <div *ngIf="!model.vtr_nameUrdu">
+                            <ng-container *ngIf="(model.vtr_nameUrdu != false);else noname_image">
+                                <p class="urdu text-xl font-bold">{{model.vtr_nameUrdu}}</p>
+                            </ng-container>
+                            <ng-template #noname_image>
+                                <ng-container *ngIf="(model.vtr_nameUrl != false); else noname_alt">
+                                    <img src="https://svoogle.blob.core.windows.net/data-pp158/{{model.vtr_nameUrl}}" style="height: 38px;"/>
+                                </ng-container>
+                            </ng-template>
+                            <ng-template #noname_alt>
                                 <img class="row_urdu_blob" onerror='this.style.display = "none"' src="{{'data:image/png;base64,' + model.vtr_nameBlob}}" />
-                            </div>
+                            </ng-template>
                         </td>
                         <td class="urdu text-lg font-bold">والد/ شوہر کا نام</td>
                         <td>
