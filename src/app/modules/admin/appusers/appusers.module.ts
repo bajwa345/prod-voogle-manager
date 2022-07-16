@@ -28,6 +28,7 @@ import { DialogNewAppUserComponent } from 'app/modules/admin/appusers/dialog-new
 import { DialogViewAppUserDetailsComponent } from 'app/modules/admin/appusers/dialog-view-appuser-details/dialogviewappuserdetails.component';
 import { DialogUpdateAppUserDetailsComponent } from 'app/modules/admin/appusers/dialog-update-appuser-details/dialogupdateappuserdetails.component';
 import { DialogResetAppUserPasswordComponent } from 'app/modules/admin/appusers/dialog-reset-appuser-password/dialogresetappuserpassword.component';
+import { DialogDeleteAppUserComponent } from 'app/modules/admin/appusers/dialog-delete-appuser/dialogdeleteappuser.component';
 
 const appUsersRoutes: Route[] = [
     {
@@ -42,7 +43,8 @@ const appUsersRoutes: Route[] = [
         DialogNewAppUserComponent,
         DialogViewAppUserDetailsComponent,
         DialogUpdateAppUserDetailsComponent,
-        DialogResetAppUserPasswordComponent
+        DialogResetAppUserPasswordComponent,
+        DialogDeleteAppUserComponent
     ],
     imports: [
         RouterModule.forChild(appUsersRoutes),

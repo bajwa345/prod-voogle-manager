@@ -143,9 +143,14 @@
                                 <td class="urdu text-xl font-bold p-1">انچارج نام</td>
                                 <td class="pl-3">
                                     <p class="urdu text-xl font-bold">{{selectedRecord.pollinglocation.plc_inchargeNameText}}</p>
-                                    <div *ngIf="!selectedRecord.pollinglocation.plc_inchargeNameText">
+                                    <ng-template #noname_image>
+                                        <ng-container *ngIf="(selectedRecord.pollinglocation.plc_inchargeNameUrl != null); else noname_alt">
+                                            <img src="https://svoogle.blob.core.windows.net/data-pp158/{{selectedRecord.pollinglocation.plc_inchargeNameUrl}}" style="height: 38px;"/>
+                                        </ng-container>
+                                    </ng-template>
+                                    <ng-template #noname_alt>
                                         <img class="row_urdu_blob" onerror='this.style.display = "none"' src="{{'data:image/png;base64,' + selectedRecord.pollinglocation.vtr_nameBlob}}" />
-                                    </div>
+                                    </ng-template>
                                 </td>
                             </tr>
                             <tr *ngIf="selectedRecord.pollinglocation.plc_inchargeCnic">

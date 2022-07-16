@@ -152,6 +152,8 @@
                                     mat-flat-button (click)="updateDetails(row, listItem)">Update</button>
                                 <button name="btn-resetpass" ngDefaultControl class="px-1 py-3 mx-0.5 text-sm text-gray-600 bg-gray-200 dark:text-gray-100 dark:bg-gray-500 list-btn"
                                     mat-flat-button (click)="resetPassword(row, listItem)">Reset Password</button>
+                                <button name="btn-delete" ngDefaultControl class="px-1 py-3 mx-0.5 text-sm text-gray-600 bg-gray-200 dark:text-gray-100 dark:bg-gray-500 list-btn"
+                                    mat-flat-button (click)="deleteUser(row, listItem)">Delete User</button>
                             </div>
                         </td>
                     </ng-container>

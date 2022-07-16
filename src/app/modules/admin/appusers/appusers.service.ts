@@ -34,7 +34,13 @@ export class AppUsersService {
 
     resetAppUserPassword(requestObject: any): Observable<ReturnDataModel> {
         return this.http.post<ReturnDataModel>(
-            backEndUrl + "/appusers/reset-appuser-pssword", requestObject
+            backEndUrl + "/appusers/reset-appuser-password", requestObject
+        );
+    }
+
+    deleteAppUser(requestObject: any): Observable<ReturnDataModel> {
+        return this.http.post<ReturnDataModel>(
+            backEndUrl + "/appusers/delete-appuser", requestObject
         );
     }
 }
